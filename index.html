@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agents</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 3px solid #e8491d;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+
+        header a:hover {
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        #showcase {
+            min-height: 400px;
+            background: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center/cover;
+            text-align: center;
+            color: #fff;
+        }
+
+        #showcase h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        #showcase p {
+            font-size: 20px;
+        }
+
+        #agents {
+            padding: 15px;
+            background: #fff;
+            color: #333;
+        }
+
+        #agents h2 {
+            text-align: center;
+        }
+
+        .agent-type {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .agent-type:hover {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .agent-type h3 {
+            color: #e8491d;
+        }
+
+        #contact {
+            padding: 20px;
+        }
+
+        #contact h2 {
+            text-align: center;
+        }
+
+        #contact form {
+            padding: 20px;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #contact input[type="submit"] {
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #contact input[type="submit"]:hover {
+            background: #e8491d;
+            color: #fff;
+        }
+
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            background: #333;
+            color: #fff;
+            text-align: center;
+        }
+
+        /* Responsive Styles */
+        @media(max-width: 768px) {
+            header #branding,
+            header nav {
+                float: none;
+                text-align: center;
+            }
+
+            header nav li {
+                float: none;
+                display: block;
+            }
+
+            header {
+                padding-bottom: 20px;
+            }
+
+            #showcase h1 {
+                font-size: 35px;
+            }
+
+            #showcase p {
+                font-size: 16px;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+
+        /* Interactive Chart Styles */
+        #chartContainer {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        /* Interactive Table Styles */
+        #dataTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        #dataTable th, #dataTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #dataTable th {
+            background-color: #f2f2f2;
+        }
+
+        /* Button Styles */
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">AI</span> Agents</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="#">Home</a></li>
+                    <li><a href="#agents">Agents</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="showcase">
+        <div class="container">
+            <h1>Understanding AI Agents</h1>
+            <p>Explore the world of autonomous entities designed to perceive their environment, make decisions, and take actions to achieve specific goals.</p>
+        </div>
+    </section>
+
+    <section id="agents">
+        <div class="container">
+            <h2>Types of AI Agents</h2>
+
+            <div class="agent-type">
+                <h3>Simple Reflex Agents</h3>
+                <p>These agents react directly to percepts. They have a simple rule-based behavior based on the current state of the environment.</p>
+            </div>
+
+            <div class="agent-type">
+                <h3>Model-Based Reflex Agents</h3>
+                <p>These agents maintain an internal state (model) based on the percept history and thus can handle partially observable environments.</p>
+            </div>
+
+            <div class="agent-type">
+                <h3>Goal-Based Agents</h3>
+                <p>These agents have a goal description and aim to reach the goal state. They use search and planning to achieve their goals.</p>
+            </div>
+
+            <div class="agent-type">
+                <h3>Utility-Based Agents</h3>
+                <p>These agents choose actions based on a utility function, which measures the "happiness" of each state. They optimize for the best possible outcome.</p>
+            </div>
+
+            <div id="chartContainer"></div>
+
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Agent Type</th>
+                        <th>Complexity</th>
+                        <th>Use Cases</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Simple Reflex</td>
+                        <td>Low</td>
+                        <td>Simple Automation</td>
+                    </tr>
+                    <tr>
+                        <td>Model-Based</td>
+                        <td>Medium</td>
+                        <td>Robotics, Games</td>
+                    </tr>
+                    <tr>
+                        <td>Goal-Based</td>
+                        <td>High</td>
+                        <td>Planning, Navigation</td>
+                    </tr>
+                     <tr>
+                        <td>Utility-Based</td>
+                        <td>High</td>
+                        <td>Decision Making</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button class="button" onclick="showAlert()">Learn More</button>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <input type="text" id="name" name="name" placeholder="Your Name">
+                <input type="email" id="email" name="email" placeholder="Your Email">
+                <textarea id="message" name="message" placeholder="Message"></textarea>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>AI Agents, Copyright &copy; 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submitted successfully!');
+        });
+
+        function showAlert() {
+            alert("You clicked the 'Learn More' button!");
+        }
+
+        // Chart Data
+        const chartData = [
+            { label: "Simple Reflex", y: 20 },
+            { label: "Model-Based", y: 30 },
+            { label: "Goal-Based", y: 25 },
+            { label: "Utility-Based", y: 25 }
+        ];
+
+        // Create Chart (using a placeholder - replace with actual charting library if needed)
+        function createChart() {
+            const chartContainer = document.getElementById("chartContainer");
+            chartContainer.innerHTML = "<p>Chart Placeholder - Integrate a charting library for a real chart.</p>";
+        }
+
+        createChart();
+    </script>
+</body>
+</html>
